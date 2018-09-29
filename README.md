@@ -84,7 +84,7 @@
 
 ### 2. Content-Type : application/xml, application/json 사용
 
-* RequestBody
+* @RequestBody
 ```xml
 <mvc:annotation-driven />
 ```
