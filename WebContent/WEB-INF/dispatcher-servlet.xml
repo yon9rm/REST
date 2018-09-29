@@ -11,11 +11,7 @@
 	http://www.springframework.org/schema/mvc
 	http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-	<mvc:annotation-driven />
-
-	<bean id="viewResolver"
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-		p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" />
+<!-- 	<mvc:annotation-driven /> -->
 
 	<context:component-scan base-package="com.multi.contactsapp.view"></context:component-scan>
 	
@@ -30,19 +26,23 @@
 		</property>
 	</bean>
 	
-	<bean id="xmlView" class="org.springframework.web.servlet.view.xml.MarshallingView">
-		<constructor-arg ref="jaxb2"></constructor-arg>
-		
-		<!-- 여기에 지정된 녀석만 보인다 -->
-		<property name="modelKey" value="data"></property>
+	<bean id="marshallingConverter" class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+    		<constructor-arg ref="jaxb2" />
+    		<property name="supportedMediaTypes" value="application/xml"/>
 	</bean>
-	
-	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
-		<!-- 여기에 지정된 녀석만 보인다 -->
-		<property name="modelKey" value="data"></property>
-		
-		<!-- 필요없는 껍데기 제외 -->
-		<property name="extractValueFromSingleKeyModel" value="true"></property>
+
+	<bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+		<property name="supportedMediaTypes" value="application/json" />
+	</bean>
+
+   	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="marshallingConverter" />
+				<ref bean="jsonConverter" />
+			</list>
+		</property>
 	</bean>
 	
 </beans>
