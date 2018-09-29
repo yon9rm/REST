@@ -1,7 +1,7 @@
 # REST 핵심 원칙
 
 1. Addressability(주소표현성)
-1) 리소스 식별자를 URI로 한다. (Unique ID)
+ 1) 리소스 식별자를 URI로 한다. (Unique ID)
 2) URI 경로의 단어는 명사를 권장.
 3) URI의 상위 경로는 하위 경로의 집합을 의미하는 단어로 구성. /book/java/
 4) token과 같이 리소스와 직접 관련이 없는 정보는 쿼리스트링으로 처리.
@@ -40,21 +40,15 @@
 # Content Negotiation
 
 1. xml view
-<bean id="xmlView" class="org.springframework.web.servlet.view.xml.MarshallingView">
-	<constructor-arg ref="jaxb2"></constructor-arg>
-		
-	<!-- 여기에 지정된 녀석만 보인다 -->
-	<property name="modelKey" value="data"></property>
-</bean>
+<!-- 여기에 지정된 녀석만 보인다 -->
+<property name="modelKey" value="data"></property>
 
 2. json view
-<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
-	<!-- 여기에 지정된 녀석만 보인다 -->
-	<property name="modelKey" value="data"></property>
+<!-- 여기에 지정된 녀석만 보인다 -->
+<property name="modelKey" value="data"></property>
 		
-	<!-- 필요없는 껍데기 제외 -->
-	<property name="extractValueFromSingleKeyModel" value="true"></property>
-</bean>
+<!-- 필요없는 껍데기 제외 -->
+<property name="extractValueFromSingleKeyModel" value="true"></property>
 
 # PUT, DELETE method 사용시 주의할 점
 
