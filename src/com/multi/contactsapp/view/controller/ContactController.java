@@ -56,7 +56,7 @@ public class ContactController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ModelAndView insertContact(Contact c) { 
+	public ModelAndView insertContact(@RequestBody Contact c) { 
 		
 		ContactResult result = contactService.insert(c);
 		
