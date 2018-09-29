@@ -35,3 +35,6 @@
 ```
 
 * View 이름 또는 ModelAndView 객체가 아닌 @ResponseBody를 이용하여 실제 리소스 객체를 직접 리턴한다.
+
+  * Accept : application/xml or 지정안하면 xml 형식
+  * Accept : application/json json 형식
