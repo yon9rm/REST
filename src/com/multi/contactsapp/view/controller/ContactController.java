@@ -1,6 +1,5 @@
 package com.multi.contactsapp.view.controller;
 
-import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
 
 import com.multi.contactsapp.biz.domain.Contact;
 import com.multi.contactsapp.biz.domain.ContactList;
@@ -23,12 +21,6 @@ public class ContactController {
 
 	@Autowired
 	private ContactService contactService;
-	
-	@Resource(name="xmlView")
-	private View xmlView;
-	
-	@Resource(name="jsonView")
-	private View jsonView;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView selectAll(
@@ -44,7 +36,7 @@ public class ContactController {
 		}
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setView(jsonView);
+		mav.setViewName("list");
 		mav.addObject("data", contactList);
 		
 		return mav;
@@ -58,7 +50,6 @@ public class ContactController {
 		Contact result = contactService.selectOne(contact);
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setView(xmlView);
 		mav.addObject("data", result);
 		
 		return mav;
@@ -70,7 +61,6 @@ public class ContactController {
 		ContactResult result = contactService.insert(c);
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setView(jsonView); 
 		mav.addObject("data", result);
 		
 		return mav;
@@ -83,7 +73,6 @@ public class ContactController {
 		ContactResult result = contactService.update(c);
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setView(xmlView); 
 		mav.addObject("data", result);
 		
 		return mav;
@@ -97,7 +86,6 @@ public class ContactController {
 		ContactResult result = contactService.delete(contact);
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setView(xmlView); 
 		mav.addObject("data", result);
 		
 		return mav;
