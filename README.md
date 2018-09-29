@@ -42,12 +42,14 @@
 ### 1. xml view
 
 
-<pre><code><bean id="xmlView" class="org.springframework.web.servlet.view.xml.MarshallingView"></code></pre>
-	<pre><code><constructor-arg ref="jaxb2"></constructor-arg></code></pre>
+<pre>
+<bean id="xmlView" class="org.springframework.web.servlet.view.xml.MarshallingView">
+	<constructor-arg ref="jaxb2"></constructor-arg>
 		
-	<pre><code><!-- 여기에 지정된 녀석만 보인다 --></code></pre>
-	<pre><code><property name="modelKey" value="data"></property></code></pre>
-<pre><code></bean></code></pre>
+	<!-- 여기에 지정된 녀석만 보인다 -->
+	<property name="modelKey" value="data"></property>
+</bean>
+</pre>
 
 
 ### 2. json view
