@@ -66,4 +66,25 @@
 
 * Content-Type : application/x-www-form-urlencoded 
   - form 형식의 미디어 타입 사용시 아파치 톰캣의 경우 PUT, DELETE 메소드를 사용할 수 없으므로 따로 설정을 해줘야한다. 
-  - 예) filter
+  - 예) filter 또는 x-www-form-urlencoded 형식이 아닌 xml, json 형식으로 사용
+  
+### 1. filter 설정
+
+```xml
+<filter>
+	<filter-name>httpPutFormFilter</filter-name>
+	<filter-class>org.springframework.web.filter.HttpPutFormContentFilter</filter-class>
+</filter>
+	
+<filter-mapping>
+	<filter-name>httpPutFormFilter</filter-name>
+	<servlet-name>dispatcher</servlet-name>
+</filter-mapping>
+```
+
+### 2. Content-Type : application/xml, application/json 사용
+
+* RequestBody
+```xml
+<mvc:annotation-driven />
+```
