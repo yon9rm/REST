@@ -1,16 +1,16 @@
 # REST 핵심 원칙
 
 1. Addressability(주소표현성)
-* 리소스 식별자를 URI로 한다. (Unique ID)
-* URI 경로의 단어는 명사를 권장.
-* URI의 상위 경로는 하위 경로의 집합을 의미하는 단어로 구성. /book/java/
-* token과 같이 리소스와 직접 관련이 없는 정보는 쿼리스트링으로 처리.
+  * 리소스 식별자를 URI로 한다. (Unique ID)
+  * URI 경로의 단어는 명사를 권장.
+  * URI의 상위 경로는 하위 경로의 집합을 의미하는 단어로 구성. /book/java/
+  * token과 같이 리소스와 직접 관련이 없는 정보는 쿼리스트링으로 처리.
 
 2. Connectedness(연결성)
-* 하나의 리소스는 다른 리소스들에 대한 정보를 포함할 수 있다.
-* HATEOS
-  - 해당 URI와 관련된 URI를 응답에 포함하여 관련된 URI의 경로가 바뀌어도 동적으로 사용 가능.
-  - 예) 계좌 조회 URI 응답안에 이체 URI 를 포함한다.
+  * 하나의 리소스는 다른 리소스들에 대한 정보를 포함할 수 있다.
+  * HATEOS
+    - 해당 URI와 관련된 URI를 응답에 포함하여 관련된 URI의 경로가 바뀌어도 동적으로 사용 가능.
+    - 예) 계좌 조회 URI 응답안에 이체 URI 를 포함한다.
 
 3. Statelessness(상태없음)
 * 세션, 쿠키를 사용하지 않는다.
@@ -52,7 +52,6 @@
 
 # PUT, DELETE method 사용시 주의할 점
 
-tip) PUT, DELETE method 사용시 주의할 점
 * Content-Type : application/x-www-form-urlencoded 
   - form 형식의 미디어 타입 사용시 아파치 톰캣의 경우 PUT, DELETE 메소드를 사용할 수 없으므로 따로 설정을 해줘야한다. 
   - 예) filter
