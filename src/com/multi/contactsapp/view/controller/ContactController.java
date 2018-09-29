@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -75,10 +76,30 @@ public class ContactController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/update.do", method=RequestMethod.POST)
-	public String updateContact(Contact c) { 
+	@RequestMapping(value="{no}", method=RequestMethod.PUT)
+	public ModelAndView updateContact(@RequestBody Contact c, @PathVariable("no") int no) { 
 		
-		contactService.update(c);
-		return "redirect:list.do";
+		c.setNo(no);
+		ContactResult result = contactService.update(c);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setView(xmlView); 
+		mav.addObject("data", result);
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="{no}", method=RequestMethod.DELETE)
+	public ModelAndView deleteContact(@PathVariable("no") int no) { 
+		
+		Contact contact = new Contact();
+		contact.setNo(no);
+		ContactResult result = contactService.delete(contact);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setView(xmlView); 
+		mav.addObject("data", result);
+		
+		return mav;
 	}
 }
