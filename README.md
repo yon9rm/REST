@@ -41,20 +41,18 @@
 
 ### 1. xml view
 
-
-<pre>
+```xml
 <bean id="xmlView" class="org.springframework.web.servlet.view.xml.MarshallingView">
 	<constructor-arg ref="jaxb2"></constructor-arg>
 		
 	<!-- 여기에 지정된 녀석만 보인다 -->
 	<property name="modelKey" value="data"></property>
 </bean>
-</pre>
-
+```
 
 ### 2. json view
 
-<code>
+```xml
 <bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
 	<!-- 여기에 지정된 녀석만 보인다 -->
 	<property name="modelKey" value="data"></property>
@@ -62,7 +60,7 @@
 	<!-- 필요없는 껍데기 제외 -->
 	<property name="extractValueFromSingleKeyModel" value="true"></property>
 </bean>
-</code>
+```
 
 # PUT, DELETE method 사용시 주의할 점
 
